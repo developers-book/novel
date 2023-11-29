@@ -106,6 +106,9 @@ export default function Editor({
       const lastTwo = getPrevText(e.editor, {
         chars: 2,
       });
+      const lastFive = getPrevText(e.editor, {
+        chars: 5
+      })
       if (lastTwo === "++" && !isLoading) {
         e.editor.commands.deleteRange({
           from: selection.from - 2,
@@ -121,6 +124,35 @@ export default function Editor({
       } else {
         onUpdate(e.editor);
         debouncedUpdates(e);
+      }
+
+      if (lastFive === "/save" && !isLoading ){
+        const id = Math.random().toString(32).substring(2);
+        e.editor.commands.deleteRange({
+          from: selection.from - 5,
+          to: selection.from,
+        });
+
+        let editorContent = e.editor.storage.markdown.getMarkdown();
+        let req = /\(data:image.*?\)/g //base64化された画像のみ()ごと抜き出す
+        let imgs = editorContent.match(req);
+        for(let i in imgs){
+          var a = document.createElement("a"); //Create <a>
+          let base64 = imgs[i].slice(1);
+          base64 = base64.slice(0,-1)
+          a.href = base64 //Image Base64 Goes here
+          a.download = i + "-" + id +".png"; //File name Here
+          a.click(); //Downloaded file
+
+          editorContent = editorContent.replace(base64+")",i+ "-"+id+".png)\n")
+        }
+
+
+        const blob = new Blob([editorContent], {type: 'text/plain'}); // Blob オブジェクトの作成
+        const link = document.createElement('a');
+        link.download = 'novel-'+id+'.md'; // ダウンロードファイル名称
+        link.href = URL.createObjectURL(blob); // オブジェクト URL を生成
+        link.click(); // クリックイベントを発生させる
       }
     },
     autofocus: "end",
