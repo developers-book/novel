@@ -126,7 +126,7 @@ export default function Editor({
         debouncedUpdates(e);
       }
 
-      if (lastFive === "/save" && !isLoading ){
+      if (lastFive === "/expo" && !isLoading ){
         const id = Math.random().toString(32).substring(2);
         e.editor.commands.deleteRange({
           from: selection.from - 5,
@@ -153,6 +153,48 @@ export default function Editor({
         link.download = 'novel-'+id+'.md'; // ダウンロードファイル名称
         link.href = URL.createObjectURL(blob); // オブジェクト URL を生成
         link.click(); // クリックイベントを発生させる
+      } else if (lastFive === "/save" && !isLoading ){
+        e.editor.commands.deleteRange({
+          from: selection.from - 5,
+          to: selection.from,
+        });
+        const json = localStorage.getItem("novel__content");
+        if(json){
+          const blob = new Blob([json], {type: 'text/plain'}); // Blob オブジェクトの作成
+          const link = document.createElement('a');
+          link.download = 'save.json'; // ダウンロードファイル名称
+          link.href = URL.createObjectURL(blob); // オブジェクト URL を生成
+          link.click(); // クリックイベントを発生させる
+        }
+      } else if (lastFive === "/load" && !isLoading ){
+        e.editor.commands.deleteRange({
+          from: selection.from - 5,
+          to: selection.from,
+        });
+        const input = document.createElement('input');
+        input.type="file";
+        input.id="upload_file";
+        input.accept=".json"
+        input.click(); // クリックイベントを発生させる
+
+        var fileReader = new FileReader();
+
+        input.addEventListener('change', function(){
+          if(input.files){
+            console.log("load")
+            fileReader.readAsText(input.files[0]);
+
+          }
+        });
+        fileReader.addEventListener("loadend", (event) => {
+          if(event.target){
+            let json :any;
+            json = event.target.result;
+            localStorage.setItem("novel__content",json);
+            location.reload();
+          }
+        });
+          
       }
     },
     autofocus: "end",
