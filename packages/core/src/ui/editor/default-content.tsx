@@ -10,56 +10,84 @@ export const defaultEditorContent = {
       type: "paragraph",
       content: [
         {
-          type: "text",
-          marks: [
+          "type": "heading",
+          "attrs": {
+            "level": 1
+          },
+          "content": [
             {
-              type: "link",
-              attrs: {
-                href: "https://github.com/steven-tey/novel",
-                target: "_blank",
-                class:
-                  "text-stone-400 underline underline-offset-[3px] hover:text-stone-600 transition-colors cursor-pointer",
-              },
-            },
-          ],
-          text: "Novel",
+              "type": "text",
+              "text": "utautattaro novel editor"
+            }
+          ]
         },
         {
-          type: "text",
-          text: " is a Notion-style WYSIWYG editor with AI-powered autocompletion. Built with ",
+          "type": "image",
+          "attrs": {
+            "src": "https://public.blob.vercel-storage.com/pJrjXbdONOnAeZAZ/banner-2wQk82qTwyVgvlhTW21GIkWgqPGD2C.png",
+            "alt": "banner.png",
+            "title": "banner.png",
+            "width": null,
+            "height": null
+          }
         },
         {
-          type: "text",
-          marks: [
+          "type": "heading",
+          "attrs": {
+            "level": 2
+          },
+          "content": [
             {
-              type: "link",
-              attrs: {
-                href: "https://tiptap.dev/",
-                target: "_blank",
-                class:
-                  "text-stone-400 underline underline-offset-[3px] hover:text-stone-600 transition-colors cursor-pointer",
-              },
-            },
-          ],
-          text: "Tiptap",
+              "type": "text",
+              "text": "expansion novel command"
+            }
+          ]
         },
-        { type: "text", text: " + " },
         {
-          type: "text",
-          marks: [
+          "type": "paragraph",
+          "content": [
             {
-              type: "link",
-              attrs: {
-                href: "https://sdk.vercel.ai/docs",
-                target: "_blank",
-                class:
-                  "text-stone-400 underline underline-offset-[3px] hover:text-stone-600 transition-colors cursor-pointer text-stone-400 underline underline-offset-[3px] hover:text-stone-600 transition-colors cursor-pointer",
-              },
-            },
-          ],
-          text: "Vercel AI SDK",
+              "type": "text",
+              "text": "markdown export / save as .novel / load .novel file"
+            }
+          ]
         },
-        { type: "text", text: "." },
+        {
+          "type": "codeBlock",
+          "attrs": {
+            "language": null
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "/export\n/save\n/load"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "view profile "
+            },
+            {
+              "type": "text",
+              "marks": [
+                {
+                  "type": "link",
+                  "attrs": {
+                    "href": "http://utautattaro.com",
+                    "target": "_blank",
+                    "rel": "noopener noreferrer nofollow",
+                    "class": "novel-text-stone-400 novel-underline novel-underline-offset-[3px] hover:novel-text-stone-600 novel-transition-colors novel-cursor-pointer"
+                  }
+                }
+              ],
+              "text": "utautattaro.com"
+            }
+          ]
+        }
       ],
     },
     {
