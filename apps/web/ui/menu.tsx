@@ -8,7 +8,7 @@ import {
 // import { useContext } from "react";
 // import { AppContext } from "../app/providers";
 // import { FontDefault, FontSerif, FontMono } from "@/ui/icons";
-import { Check, Menu as MenuIcon, Monitor, Moon, SunDim } from "lucide-react";
+import { Check, Menu as MenuIcon, Monitor, Moon, SunDim, User, ScrollText, GithubIcon, ScrollIcon } from "lucide-react";
 import { useTheme } from "next-themes";
 
 // const fonts = [
@@ -91,6 +91,46 @@ export default function Menu() {
               )}
             </button>
           ))}
+          <p className="p-2 text-xs font-medium text-stone-500">links</p>
+          <button
+              className="flex w-full items-center justify-between rounded px-2 py-1.5 text-sm text-stone-600 hover:bg-stone-100"
+              onClick={() => {
+                window.open("https://utautattaro.com")
+              }}
+            >
+              <div className="flex items-center space-x-2">
+                <div className="rounded-sm border border-stone-200 p-1">
+                <User className="h-4 w-4" />
+                </div>
+                <span>profile</span>
+              </div>
+            </button>
+            <button
+              className="flex w-full items-center justify-between rounded px-2 py-1.5 text-sm text-stone-600 hover:bg-stone-100"
+              onClick={() => {
+                window.open("https://utautattaro.blog")
+              }}
+            >
+              <div className="flex items-center space-x-2">
+                <div className="rounded-sm border border-stone-200 p-1">
+                <ScrollText className="h-4 w-4" />
+                </div>
+                <span>blog</span>
+              </div>
+            </button>
+            <button
+              className="flex w-full items-center justify-between rounded px-2 py-1.5 text-sm text-stone-600 hover:bg-stone-100"
+              onClick={() => {
+                window.open("https://github.com/steven-tey/novel")
+              }}
+            >
+              <div className="flex items-center space-x-2">
+                <div className="rounded-sm border border-stone-200 p-1">
+                <GithubIcon className="h-4 w-4" />
+                </div>
+                <span>steven-tey/novel</span>
+              </div>
+            </button>
         </div>
       </PopoverContent>
     </Popover>
