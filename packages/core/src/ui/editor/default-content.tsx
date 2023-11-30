@@ -27,16 +27,11 @@ export const defaultEditorContent = {
       content: [{ type: "text", text: "clear : clear content\nexport : markdown export\nsave : save as .novel\nload : load .novel file" }],
     },
     {
-      type: "heading",
-      attrs: { level: 2 },
-      content: [{ type: "text", text: "Introducing Novel" }],
-    },
-    {
       type: "paragraph",
       content: [
         {
           type: "text",
-          text: "view profile",
+          text: "view profile ",
         },
         {
           type: "text",
