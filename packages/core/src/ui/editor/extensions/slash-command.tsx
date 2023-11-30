@@ -27,7 +27,7 @@ import {
   NewspaperIcon,
   DownloadIcon,
   UploadIcon,
-
+  Trash2Icon
 } from "lucide-react";
 import { LoadingCircle } from "@/ui/icons";
 import { toast } from "sonner";
@@ -303,7 +303,18 @@ const getSuggestionItems = ({ query }: { query: string }) => {
         link.href = URL.createObjectURL(blob); // オブジェクト URL を生成
         link.click(); // クリックイベントを発生させる
       },
-    }
+    },
+    {
+      title: "clear",
+      description: "clear document",
+      searchTerms: ["clear"],
+      icon: <Trash2Icon size={18} />,
+      command: ({ editor, range }: CommandProps) => {
+        editor.chain().focus().deleteRange(range).run();
+        localStorage.setItem("novel__content","");
+        location.reload();
+      },
+    },
   ].filter((item) => {
     if (typeof query === "string" && query.length > 0) {
       const search = query.toLowerCase();

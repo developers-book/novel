@@ -43,7 +43,7 @@ export const defaultEditorContent = {
           "content": [
             {
               "type": "text",
-              "text": "markdown export / save as .novel / load .novel file"
+              "text": "clear content / markdown export / save as .novel / load .novel file"
             }
           ]
         },
@@ -55,7 +55,7 @@ export const defaultEditorContent = {
           "content": [
             {
               "type": "text",
-              "text": "/export\n/save\n/load"
+              "text": "/clear\n/export\n/save\n/load"
             }
           ]
         },
