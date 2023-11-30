@@ -1,4 +1,9 @@
 ## expansion novel command
+clear content
+```
+/clear
+```
+
 markdown export
 ```
 /export
