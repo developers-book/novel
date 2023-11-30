@@ -8,7 +8,7 @@ export default function Page() {
       <a
         href="https://github.com/utautattaro/novel"
         target="_blank"
-        className="absolute bottom-5 left-5 z-10 max-h-fit rounded-lg p-2 transition-colors duration-200 hover:bg-stone-100 sm:bottom-auto sm:top-5"
+        className="absolute top-5 left-5 z-10 max-h-fit rounded-lg transition-colors duration-200 hover:bg-stone-100 sm:bottom-auto sm:top-5"
       >
         <img src="https://i.imgur.com/wCgFwXy.png" width="60" />
       </a>
