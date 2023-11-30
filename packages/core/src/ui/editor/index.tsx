@@ -106,21 +106,18 @@ export default function Editor({
       const lastTwo = getPrevText(e.editor, {
         chars: 2,
       });
-      const lastFive = getPrevText(e.editor, {
-        chars: 5
-      })
       if (lastTwo === "++" && !isLoading) {
         e.editor.commands.deleteRange({
           from: selection.from - 2,
           to: selection.from,
         });
-        complete(
-          getPrevText(e.editor, {
-            chars: 5000,
-          })
-        );
-        // complete(e.editor.storage.markdown.getMarkdown());
-        va.track("Autocomplete Shortcut Used");
+        navigator.clipboard.readText().then((clipText) => {
+          complete(
+            clipText
+          );
+          // complete(e.editor.storage.markdown.getMarkdown());
+          va.track("Autocomplete Shortcut Used");
+        });
       } else {
         onUpdate(e.editor);
         debouncedUpdates(e);
