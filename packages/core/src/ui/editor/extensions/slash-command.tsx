@@ -221,59 +221,59 @@ const getSuggestionItems = ({ query }: { query: string }) => {
         input.click();
       },
     },
-    {
-      title: "save",
-      description: "Save as Json file.",
-      searchTerms: ["save", "json","download"],
-      icon: <DownloadIcon size={18} />,
-      command: ({ editor, range }: CommandProps) => {
-        editor.chain().focus().deleteRange(range).run();
-        const json = localStorage.getItem("novel__content");
-        if(json){
-          const blob = new Blob([json], {type: 'text/plain'}); // Blob オブジェクトの作成
-          const link = document.createElement('a');
-          link.download = 'save.json'; // ダウンロードファイル名称
-          link.href = URL.createObjectURL(blob); // オブジェクト URL を生成
-          link.click(); // クリックイベントを発生させる
-        }
-      },
-    },
-    {
-      title: "load",
-      description: "Loads data stored in json format.",
-      searchTerms: ["load", "upload","json"],
-      icon: <UploadIcon size={18} />,
-      command: ({ editor, range }: CommandProps) => {
-        editor.chain().focus().deleteRange(range).run();
-        const input = document.createElement('input');
-        input.type="file";
-        input.id="upload_file";
-        input.accept=".json"
-        input.click(); // クリックイベントを発生させる
+{
+  title: "save",
+  description: "Save as Json file.",
+  searchTerms: ["save", "json","download"],
+  icon: <DownloadIcon size={18} />,
+  command: ({ editor, range }: CommandProps) => {
+    editor.chain().focus().deleteRange(range).run();
+    const json = localStorage.getItem("novel__content");
+    if(json){
+      const blob = new Blob([json], {type: 'text/plain'}); // Blob オブジェクトの作成
+      const link = document.createElement('a');
+      link.download = 'save.json'; // ダウンロードファイル名称
+      link.href = URL.createObjectURL(blob); // オブジェクト URL を生成
+      link.click(); // クリックイベントを発生させる
+    }
+  },
+},
+{
+  title: "load",
+  description: "Loads data stored in json format.",
+  searchTerms: ["load", "upload","json"],
+  icon: <UploadIcon size={18} />,
+  command: ({ editor, range }: CommandProps) => {
+    editor.chain().focus().deleteRange(range).run();
+    const input = document.createElement('input');
+    input.type="file";
+    input.id="upload_file";
+    input.accept=".json"
+    input.click(); // クリックイベントを発生させる
 
-        var fileReader = new FileReader();
+    var fileReader = new FileReader();
 
-        input.addEventListener('change', function(){
-          if(input.files){
-            fileReader.readAsText(input.files[0]);
+    input.addEventListener('change', function(){
+      if(input.files){
+        fileReader.readAsText(input.files[0]);
 
-          }
-        });
-        fileReader.addEventListener("loadend", (event) => {
-          if(event.target){
-            let json :any;
-            json = event.target.result;
-            localStorage.setItem("novel__content",json);
-            location.reload();
-          }
-        });
-      },
-    },
+      }
+    });
+    fileReader.addEventListener("loadend", (event) => {
+      if(event.target){
+        let json :any;
+        json = event.target.result;
+        localStorage.setItem("novel__content",json);
+        location.reload();
+      }
+    });
+  },
+},
     {
       title: "export",
       description: "Export the content of novel in markdown format and png image.",
       searchTerms: ["export", "markdown", "build"],
-      icon: <DownloadIcon size={18} />,
+      icon: <NewspaperIcon size={18} />,
       command: ({ editor , range }: CommandProps) => {
         editor.chain().focus().deleteRange(range).run();
         const id = Math.random().toString(32).substring(2);
