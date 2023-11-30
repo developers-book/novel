@@ -261,7 +261,7 @@ const getSuggestionItems = ({ query }: { query: string }) => {
 },
     {
       title: "export",
-      description: "Export the content of novel in markdown and image.",
+      description: "Export markdown with image.",
       searchTerms: ["export", "markdown", "build"],
       icon: <NewspaperIcon size={18} />,
       command: ({ editor , range }: CommandProps) => {
