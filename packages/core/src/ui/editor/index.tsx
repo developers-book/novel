@@ -106,7 +106,7 @@ export default function Editor({
       const lastTwo = getPrevText(e.editor, {
         chars: 2,
       });
-      if (lastTwo === "++" && !isLoading) {
+      if (lastTwo === "%%" && !isLoading) {
         e.editor.commands.deleteRange({
           from: selection.from - 2,
           to: selection.from,
