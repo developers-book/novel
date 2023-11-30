@@ -223,8 +223,8 @@ const getSuggestionItems = ({ query }: { query: string }) => {
     },
 {
   title: "save",
-  description: "Save as Json file.",
-  searchTerms: ["save", "json","download"],
+  description: "Save as novel file.",
+  searchTerms: ["save", "novel","download"],
   icon: <DownloadIcon size={18} />,
   command: async ({ editor, range }: CommandProps) => {
     editor.chain().focus().deleteRange(range).run();
@@ -233,8 +233,7 @@ const getSuggestionItems = ({ query }: { query: string }) => {
       const opts = {
         suggestedName: 'document',
         types: [{
-          description: 'Json file',
-          accept: {'text/plain': ['.json']},
+          accept: {'text/plain': ['.novel']},
         }],
       };
       const handle = await (window as any).showSaveFilePicker(opts);
@@ -246,15 +245,15 @@ const getSuggestionItems = ({ query }: { query: string }) => {
 },
 {
   title: "load",
-  description: "Loads data stored in json format.",
-  searchTerms: ["load", "upload","json"],
+  description: "Loads data stored in novel format.",
+  searchTerms: ["load", "upload","novel"],
   icon: <UploadIcon size={18} />,
   command: ({ editor, range }: CommandProps) => {
     editor.chain().focus().deleteRange(range).run();
     const input = document.createElement('input');
     input.type="file";
     input.id="upload_file";
-    input.accept=".json"
+    input.accept=".novel"
     input.click(); // クリックイベントを発生させる
 
     var fileReader = new FileReader();
