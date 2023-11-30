@@ -111,13 +111,12 @@ export default function Editor({
           from: selection.from - 2,
           to: selection.from,
         });
-        navigator.clipboard.readText().then((clipText) => {
-          complete(
-            clipText
-          );
-          // complete(e.editor.storage.markdown.getMarkdown());
-          va.track("Autocomplete Shortcut Used");
-        });
+        let select = document.getSelection();
+        complete(
+          (select as any).baseNode.textContent
+        );
+        // complete(e.editor.storage.markdown.getMarkdown());
+        va.track("Autocomplete Shortcut Used");
       } else {
         onUpdate(e.editor);
         debouncedUpdates(e);
