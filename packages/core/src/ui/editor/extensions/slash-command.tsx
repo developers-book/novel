@@ -202,7 +202,7 @@ const getSuggestionItems = ({ query }: { query: string }) => {
     },
     {
       title: "Image",
-      description: "Upload an image from your computer.",
+      description: "Up an image from your computer.",
       searchTerms: ["photo", "picture", "media"],
       icon: <ImageIcon size={18} />,
       command: ({ editor, range }: CommandProps) => {
@@ -224,7 +224,7 @@ const getSuggestionItems = ({ query }: { query: string }) => {
 {
   title: "save",
   description: "Save as novel file.",
-  searchTerms: ["save", "novel","download"],
+  searchTerms: ["save", "novel"],
   icon: <DownloadIcon size={18} />,
   command: async ({ editor, range }: CommandProps) => {
     editor.chain().focus().deleteRange(range).run();
