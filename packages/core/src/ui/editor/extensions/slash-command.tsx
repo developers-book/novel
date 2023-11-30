@@ -226,15 +226,21 @@ const getSuggestionItems = ({ query }: { query: string }) => {
   description: "Save as Json file.",
   searchTerms: ["save", "json","download"],
   icon: <DownloadIcon size={18} />,
-  command: ({ editor, range }: CommandProps) => {
+  command: async ({ editor, range }: CommandProps) => {
     editor.chain().focus().deleteRange(range).run();
     const json = localStorage.getItem("novel__content");
     if(json){
-      const blob = new Blob([json], {type: 'text/plain'}); // Blob オブジェクトの作成
-      const link = document.createElement('a');
-      link.download = 'save.json'; // ダウンロードファイル名称
-      link.href = URL.createObjectURL(blob); // オブジェクト URL を生成
-      link.click(); // クリックイベントを発生させる
+      const opts = {
+        suggestedName: 'document',
+        types: [{
+          description: 'Json file',
+          accept: {'text/plain': ['.json']},
+        }],
+      };
+      const handle = await (window as any).showSaveFilePicker(opts);
+      const writable = await handle.createWritable()
+      await writable.write(json)
+      await writable.close()
     }
   },
 },
