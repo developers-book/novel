@@ -25,30 +25,6 @@ export const defaultEditorContent = {
       type: "codeBlock",
       attrs: { language: null },
       content: [{ type: "text", text: "clear : clear content\nexport : markdown export\nsave : save as .novel\nload : load .novel file" }],
-    },
-    {
-      type: "paragraph",
-      content: [
-        {
-          type: "text",
-          text: "view profile ",
-        },
-        {
-          type: "text",
-          marks: [
-            {
-              type: "link",
-              attrs: {
-                href: "https://utautattaro.com",
-                target: "_blank",
-                class:
-                  "text-stone-400 underline underline-offset-[3px] hover:text-stone-600 transition-colors cursor-pointer",
-              },
-            },
-          ],
-          text: "utautattaro.com",
-        }
-      ],
     }
   ],
 };
