@@ -139,7 +139,6 @@ export default function Editor({
       });
       editor?.commands.enter()
       editor?.commands.insertContent(completion)
-      console.log(editor)
     },
     onError: (err) => {
       toast.error(err.message);
