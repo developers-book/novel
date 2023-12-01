@@ -86,6 +86,8 @@ export default function Editor({
 
   const [hydrated, setHydrated] = useState(false);
 
+  let firstselection = 0;
+
   const debouncedUpdates = useDebouncedCallback(async ({ editor }) => {
     const json = editor.getJSON();
     onDebouncedUpdate(editor);
@@ -115,6 +117,8 @@ export default function Editor({
         complete(
           (select as any).baseNode.textContent
         );
+        firstselection = e.editor.state.selection.from;
+        e.editor.commands.enter();
         // complete(e.editor.storage.markdown.getMarkdown());
         va.track("Autocomplete Shortcut Used");
       } else {
@@ -130,9 +134,12 @@ export default function Editor({
     api: completionApi,
     onFinish: (_prompt, completion) => {
       editor?.commands.setTextSelection({
-        from: editor.state.selection.from - completion.length,
+        from: firstselection,
         to: editor.state.selection.from,
       });
+      editor?.commands.enter()
+      editor?.commands.insertContent(completion)
+      console.log(editor)
     },
     onError: (err) => {
       toast.error(err.message);
