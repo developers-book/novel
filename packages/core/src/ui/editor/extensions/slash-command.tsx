@@ -27,7 +27,8 @@ import {
   NewspaperIcon,
   DownloadIcon,
   UploadIcon,
-  BombIcon
+  BombIcon,
+  MaximizeIcon
 } from "lucide-react";
 import { LoadingCircle } from "@/ui/icons";
 import { toast } from "sonner";
@@ -218,7 +219,7 @@ const getSuggestionItems = ({ query }: { query: string }) => {
       const opts = {
         suggestedName: 'document',
         types: [{
-          accept: {'text/plain': ['.novel']},
+          accept: {'text/plain': ['.tale']},
         }],
       };
       const handle = await (window as any).showSaveFilePicker(opts);
@@ -238,7 +239,7 @@ const getSuggestionItems = ({ query }: { query: string }) => {
     const input = document.createElement('input');
     input.type="file";
     input.id="upload_file";
-    input.accept=".novel"
+    input.accept=".tale"
     input.click(); // クリックイベントを発生させる
 
     var fileReader = new FileReader();
@@ -297,6 +298,17 @@ const getSuggestionItems = ({ query }: { query: string }) => {
       command: ({ editor, range }: CommandProps) => {
         editor.chain().focus().deleteRange(range).run();
         editor.commands.clearContent();
+      },
+    },
+    {
+      title: "fullscreen",
+      description: "fullscreen editor",
+      searchTerms: ["fullscreen"],
+      icon: <MaximizeIcon size={18} />,
+      command: ({ editor, range }: CommandProps) => {
+        editor.chain().focus().deleteRange(range).run();
+        let editordom = document.getElementsByClassName("novel-relative");
+        (editordom as any)[0].requestFullscreen();
       },
     },
   ].filter((item) => {

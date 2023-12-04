@@ -5,9 +5,9 @@ import { ReactNode } from "react";
 import Providers from "./providers";
 
 const title =
-  "Novel";
+  "Tale";
 const description =
-  "Novel is a Notion-style WYSIWYG editor.";
+  "Tale : full-stack md editor";
 
 export const metadata: Metadata = {
   title,
@@ -20,9 +20,9 @@ export const metadata: Metadata = {
     title,
     description,
     card: "summary_large_image",
-    creator: "@steventey",
+    creator: "@utautattaro",
   },
-  metadataBase: new URL("https://novel.utautattaro.com"),
+  metadataBase: new URL("https://tale.utautattaro.com"),
   themeColor: "#ffffff",
 };
 
