@@ -16,6 +16,7 @@ import { ImageResizer } from "./extensions/image-resizer";
 import { EditorProps } from "@tiptap/pm/view";
 import { Editor as EditorClass, Extensions } from "@tiptap/core";
 import { NovelContext } from "./provider";
+let firsttime = true
 
 export default function Editor({
   completionApi = "/api/generate",
@@ -82,6 +83,29 @@ export default function Editor({
    */
   disableLocalStorage?: boolean;
 }) {
+  if(firsttime){
+    let param = getParam("load",null);
+    if(param){
+      fetch(param).then((response) => {
+        response.json().then((output) => {
+          localStorage.setItem("novel__content",JSON.stringify(output));
+          location.href = location.protocol + "//" + location.host;
+        });
+      });
+    }
+    firsttime = false;
+    
+  }  
+  function getParam(name : string, url : any) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+  }
+
   const [content, setContent] = useLocalStorage(storageKey, defaultValue);
 
   const [hydrated, setHydrated] = useState(false);
