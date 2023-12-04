@@ -285,7 +285,7 @@ const getSuggestionItems = ({ query }: { query: string }) => {
 
         const blob = new Blob([editorContent], {type: 'text/plain'}); // Blob オブジェクトの作成
         const link = document.createElement('a');
-        link.download = 'novel-'+id+'.md'; // ダウンロードファイル名称
+        link.download = 'tale-'+id+'.md'; // ダウンロードファイル名称
         link.href = URL.createObjectURL(blob); // オブジェクト URL を生成
         link.click(); // クリックイベントを発生させる
       },
