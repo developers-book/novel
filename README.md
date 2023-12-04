@@ -18,6 +18,11 @@ load .novel file
 ```
 /load
 ```
+
+request fullscreen
+```
+/fullscreen
+```
 ---
 
 <a href="https://novel.sh">
