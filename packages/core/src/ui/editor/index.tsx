@@ -150,6 +150,7 @@ export default function Editor({
 
   const prev = useRef("");
   useEffect(() => {
+    window.scrollTo(0, 0);
     let param = getParam("load",null);
     if(param){
       fetch(param).then((response) => {
