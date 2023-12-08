@@ -209,8 +209,8 @@ const getSuggestionItems = ({ query }: { query: string }) => {
     },
 {
   title: "save",
-  description: "Save as novel file.",
-  searchTerms: ["save", "novel"],
+  description: "Save as tale file.",
+  searchTerms: ["save", "tale"],
   icon: <DownloadIcon size={18} />,
   command: async ({ editor, range }: CommandProps) => {
     editor.chain().focus().deleteRange(range).run();
@@ -231,8 +231,8 @@ const getSuggestionItems = ({ query }: { query: string }) => {
 },
 {
   title: "load",
-  description: "Loads data stored in novel format.",
-  searchTerms: ["load", "upload","novel"],
+  description: "Loads data stored in tale format.",
+  searchTerms: ["load", "upload","tale"],
   icon: <UploadIcon size={18} />,
   command: ({ editor, range }: CommandProps) => {
     editor.chain().focus().deleteRange(range).run();
