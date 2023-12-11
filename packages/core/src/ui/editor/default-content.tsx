@@ -69,7 +69,7 @@ export const defaultEditorContent = {
     {
       type: "codeBlock",
       attrs: { language: null },
-      content: [{ type: "text", text: "/clear : clear content\n/export : markdown export\n/save : save as .tale\n/load : load .tale file\n/fullscreen : fullscreen editor" }],
+      content: [{ type: "text", text: "/clear : clear content\n/export : markdown export\n/save : save as .tale\n/load : load .tale file\n/fullscreen : fullscreen editor\n/presentation : start presentation\n/pdf make pdf" }],
     }
   ],
 };
