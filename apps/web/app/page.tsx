@@ -5,6 +5,7 @@ import Editor from "@/ui/editor";
 export default function Page() {
   return (
     <div className="flex min-h-screen flex-col items-center sm:px-5 sm:pt-[calc(20vh)]">
+        <script src="https://remarkjs.com/downloads/remark-latest.min.js" async />
       <a
         href="https://github.com/utautattaro/tale"
         target="_blank"
@@ -14,6 +15,7 @@ export default function Page() {
       </a>
       <Menu />
       <Editor />
+      <div id="slide" className="aspect-[16/9]"></div>
     </div>
   );
 }

@@ -1,3 +1,4 @@
+declare let remark : any;
 import React, {
   useState,
   useEffect,
@@ -18,7 +19,6 @@ import {
   Heading3,
   List,
   ListOrdered,
-  MessageSquarePlus,
   Text,
   TextQuote,
   Image as ImageIcon,
@@ -28,7 +28,9 @@ import {
   DownloadIcon,
   UploadIcon,
   BombIcon,
-  MaximizeIcon
+  MaximizeIcon,
+  ProjectorIcon,
+  FileTextIcon
 } from "lucide-react";
 import { LoadingCircle } from "@/ui/icons";
 import { toast } from "sonner";
@@ -311,6 +313,47 @@ const getSuggestionItems = ({ query }: { query: string }) => {
         (editordom as any)[0].requestFullscreen();
       },
     },
+    {
+      title: "presentation",
+      description: "start presentation",
+      searchTerms: ["slide","presentation"],
+      icon: <ProjectorIcon size={18} />,
+      command: ({ editor, range }: CommandProps) => {
+        editor.chain().focus().deleteRange(range).run();
+        let editorContent = editor.storage.markdown.getMarkdown();
+        remark.create({
+          ratio: "16:9",
+          navigation: {
+            scroll: false,
+          },
+          source: editorContent,
+          container: document.getElementById('slide')
+        });
+        let editordom = document.getElementById("slide");
+        editordom?.requestFullscreen();
+      },
+    },
+    {
+      title: "create pdf",
+      description: "make pdf",
+      searchTerms: ["pdf"],
+      icon: <FileTextIcon size={18} />,
+      command: ({ editor, range }: CommandProps) => {
+        if(window.confirm("make pdf?")){
+          editor.chain().focus().deleteRange(range).run();
+          let editorContent = editor.storage.markdown.getMarkdown();
+          document.body.innerHTML = "";
+          remark.create({
+            ratio: "16:9",
+            navigation: {
+              scroll: false,
+            },
+            source: editorContent
+          });
+          window?.print();
+        }
+      },
+    }
   ].filter((item) => {
     if (typeof query === "string" && query.length > 0) {
       const search = query.toLowerCase();
