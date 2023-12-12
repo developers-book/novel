@@ -57,12 +57,8 @@ body {
 
 .remark-slide-content {
   background-image: url('https://i.imgur.com/wCgFwXy.png');
-  background-position: right bottom;
+  background-position: right top;
   background-repeat: no-repeat;
   background-size: 60px;
-}
-
-.remark-slide-number {
-  top: 12px !important;
 }
 
