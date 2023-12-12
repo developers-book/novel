@@ -327,6 +327,7 @@ const getSuggestionItems = ({ query }: { query: string }) => {
             scroll: false,
           },
           source: editorContent,
+          highlightStyle: 'github',
           container: document.getElementById('slide')
         });
         let editordom = document.getElementById("slide");
@@ -348,7 +349,8 @@ const getSuggestionItems = ({ query }: { query: string }) => {
             navigation: {
               scroll: false,
             },
-            source: editorContent
+            source: editorContent,
+            highlightStyle: 'github',
           });
           window?.print();
         }
