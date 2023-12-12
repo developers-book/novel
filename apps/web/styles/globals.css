@@ -29,7 +29,7 @@ body {
   text-decoration-line: underline;
 }
 
-.remark-container ul,ol{
+.remark-container ul, .remark-container ol {
   font-size: 24px;
 }
 
