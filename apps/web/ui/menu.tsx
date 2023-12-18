@@ -8,7 +8,7 @@ import {
 // import { useContext } from "react";
 // import { AppContext } from "../app/providers";
 // import { FontDefault, FontSerif, FontMono } from "@/ui/icons";
-import { Check, Menu as MenuIcon, Monitor, Moon, SunDim, User, ScrollText, GithubIcon, ScrollIcon } from "lucide-react";
+import { Check, Menu as MenuIcon, Monitor, Moon, SunDim, User, ScrollText, GithubIcon, ScrollIcon,ProjectorIcon } from "lucide-react";
 import { useTheme } from "next-themes";
 
 // const fonts = [
@@ -129,6 +129,21 @@ export default function Menu() {
                 <GithubIcon className="h-4 w-4" />
                 </div>
                 <span>steven-tey/novel</span>
+              </div>
+            </button>
+            <p className="p-2 text-xs font-medium text-stone-500">slide</p>
+          <button
+              className="flex w-full items-center justify-between rounded px-2 py-1.5 text-sm text-stone-600 hover:bg-stone-100"
+              onClick={() => {
+                let editordom = document.getElementById("slide");
+                editordom?.requestFullscreen();
+              }}
+            >
+              <div className="flex items-center space-x-2">
+                <div className="rounded-sm border border-stone-200 p-1">
+                <ProjectorIcon className="h-4 w-4" />
+                </div>
+                <span>slide restart</span>
               </div>
             </button>
         </div>

@@ -335,6 +335,17 @@ const getSuggestionItems = ({ query }: { query: string }) => {
       },
     },
     {
+      title: "restart",
+      description: "restart",
+      searchTerms: ["restart"],
+      icon: <ProjectorIcon size={18} />,
+      command: ({ editor, range }: CommandProps) => {
+        editor.chain().focus().deleteRange(range).run();
+        let editordom = document.getElementById("slide");
+        editordom?.requestFullscreen();
+      },
+    },
+    {
       title: "create pdf",
       description: "make pdf",
       searchTerms: ["pdf"],
