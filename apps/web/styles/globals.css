@@ -33,6 +33,18 @@ body {
   font-size: 24px;
 }
 
+.remark-container ul ul {
+  margin-left: 20px;
+}
+
+.remark-containerul ul ul {
+  margin-left: 40px;
+}
+
+.remark-container ul ul ul ul {
+  margin-left: 60px;
+}
+
 .remark-container ul li::before {
   content: '\2022';
   margin-right: 8px;
