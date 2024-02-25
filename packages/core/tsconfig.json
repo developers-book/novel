@@ -1,6 +1,6 @@
 {
   "extends": "tsconfig/react.json",
-  "include": ["."],
+  "include": [".", "../../apps/web/public/worker.js"],
   "exclude": ["dist", "build", "node_modules"],
   "compilerOptions": {
     "baseUrl": ".",

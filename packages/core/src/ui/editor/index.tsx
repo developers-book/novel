@@ -86,6 +86,8 @@ export default function Editor({
 
   const [hydrated, setHydrated] = useState(false);
 
+  let firstselection = 0;
+
   const debouncedUpdates = useDebouncedCallback(async ({ editor }) => {
     const json = editor.getJSON();
     onDebouncedUpdate(editor);
@@ -115,6 +117,8 @@ export default function Editor({
         complete(
           (select as any).baseNode.textContent
         );
+        firstselection = e.editor.state.selection.from;
+        e.editor.commands.enter();
         // complete(e.editor.storage.markdown.getMarkdown());
         va.track("Autocomplete Shortcut Used");
       } else {
@@ -130,9 +134,11 @@ export default function Editor({
     api: completionApi,
     onFinish: (_prompt, completion) => {
       editor?.commands.setTextSelection({
-        from: editor.state.selection.from - completion.length,
+        from: firstselection,
         to: editor.state.selection.from,
       });
+      editor?.commands.enter()
+      editor?.commands.insertContent(completion)
     },
     onError: (err) => {
       toast.error(err.message);
@@ -143,6 +149,18 @@ export default function Editor({
   });
 
   const prev = useRef("");
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    let param = getParam("load",null);
+    if(param){
+      fetch(param).then((response) => {
+        response.json().then((output) => {
+          localStorage.setItem("novel__content",JSON.stringify(output));
+          location.href = location.protocol + "//" + location.host;
+        });
+      });
+    }
+  },[]);
 
   // Insert chunks of the generated text
   useEffect(() => {
@@ -218,4 +236,14 @@ export default function Editor({
       </div>
     </NovelContext.Provider>
   );
+}
+
+function getParam(name : string, url : any) {
+  if (!url) url = location.href;
+  name = name.replace(/[\[\]]/g, "\\$&");
+  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+      results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return '';
+  return decodeURIComponent(results[2].replace(/\+/g, " "));
 }

@@ -1,3 +1,4 @@
+declare let remark : any;
 import React, {
   useState,
   useEffect,
@@ -18,7 +19,6 @@ import {
   Heading3,
   List,
   ListOrdered,
-  MessageSquarePlus,
   Text,
   TextQuote,
   Image as ImageIcon,
@@ -27,7 +27,10 @@ import {
   NewspaperIcon,
   DownloadIcon,
   UploadIcon,
-  BombIcon
+  BombIcon,
+  MaximizeIcon,
+  ProjectorIcon,
+  FileTextIcon
 } from "lucide-react";
 import { LoadingCircle } from "@/ui/icons";
 import { toast } from "sonner";
@@ -208,8 +211,8 @@ const getSuggestionItems = ({ query }: { query: string }) => {
     },
 {
   title: "save",
-  description: "Save as novel file.",
-  searchTerms: ["save", "novel"],
+  description: "Save as tale file.",
+  searchTerms: ["save", "tale"],
   icon: <DownloadIcon size={18} />,
   command: async ({ editor, range }: CommandProps) => {
     editor.chain().focus().deleteRange(range).run();
@@ -218,7 +221,7 @@ const getSuggestionItems = ({ query }: { query: string }) => {
       const opts = {
         suggestedName: 'document',
         types: [{
-          accept: {'text/plain': ['.novel']},
+          accept: {'text/plain': ['.tale']},
         }],
       };
       const handle = await (window as any).showSaveFilePicker(opts);
@@ -230,15 +233,15 @@ const getSuggestionItems = ({ query }: { query: string }) => {
 },
 {
   title: "load",
-  description: "Loads data stored in novel format.",
-  searchTerms: ["load", "upload","novel"],
+  description: "Loads data stored in tale format.",
+  searchTerms: ["load", "upload","tale"],
   icon: <UploadIcon size={18} />,
   command: ({ editor, range }: CommandProps) => {
     editor.chain().focus().deleteRange(range).run();
     const input = document.createElement('input');
     input.type="file";
     input.id="upload_file";
-    input.accept=".novel"
+    input.accept=".tale"
     input.click(); // クリックイベントを発生させる
 
     var fileReader = new FileReader();
@@ -284,7 +287,7 @@ const getSuggestionItems = ({ query }: { query: string }) => {
 
         const blob = new Blob([editorContent], {type: 'text/plain'}); // Blob オブジェクトの作成
         const link = document.createElement('a');
-        link.download = 'novel-'+id+'.md'; // ダウンロードファイル名称
+        link.download = 'tale-'+id+'.md'; // ダウンロードファイル名称
         link.href = URL.createObjectURL(blob); // オブジェクト URL を生成
         link.click(); // クリックイベントを発生させる
       },
@@ -299,6 +302,71 @@ const getSuggestionItems = ({ query }: { query: string }) => {
         editor.commands.clearContent();
       },
     },
+    {
+      title: "fullscreen",
+      description: "fullscreen editor",
+      searchTerms: ["fullscreen"],
+      icon: <MaximizeIcon size={18} />,
+      command: ({ editor, range }: CommandProps) => {
+        editor.chain().focus().deleteRange(range).run();
+        let editordom = document.getElementsByClassName("novel-relative");
+        (editordom as any)[0].requestFullscreen();
+      },
+    },
+    {
+      title: "presentation",
+      description: "start presentation",
+      searchTerms: ["slide","presentation"],
+      icon: <ProjectorIcon size={18} />,
+      command: ({ editor, range }: CommandProps) => {
+        editor.chain().focus().deleteRange(range).run();
+        let editorContent = editor.storage.markdown.getMarkdown();
+        remark.create({
+          ratio: "16:9",
+          navigation: {
+            scroll: false,
+          },
+          source: editorContent,
+          highlightStyle: 'github',
+          container: document.getElementById('slide')
+        });
+        let editordom = document.getElementById("slide");
+        editordom?.requestFullscreen();
+      },
+    },
+    {
+      title: "restart",
+      description: "restart",
+      searchTerms: ["restart"],
+      icon: <ProjectorIcon size={18} />,
+      command: ({ editor, range }: CommandProps) => {
+        editor.chain().focus().deleteRange(range).run();
+        let editordom = document.getElementById("slide");
+        editordom?.requestFullscreen();
+      },
+    },
+    {
+      title: "create pdf",
+      description: "make pdf",
+      searchTerms: ["pdf"],
+      icon: <FileTextIcon size={18} />,
+      command: ({ editor, range }: CommandProps) => {
+        if(window.confirm("make pdf?")){
+          editor.chain().focus().deleteRange(range).run();
+          let editorContent = editor.storage.markdown.getMarkdown();
+          document.body.innerHTML = "";
+          remark.create({
+            ratio: "16:9",
+            navigation: {
+              scroll: false,
+            },
+            source: editorContent,
+            highlightStyle: 'github',
+          });
+          window?.print();
+        }
+      },
+    }
   ].filter((item) => {
     if (typeof query === "string" && query.length > 0) {
       const search = query.toLowerCase();

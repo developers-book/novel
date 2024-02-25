@@ -5,3 +5,72 @@
 body {
   background-color: var(--novel-white);
 }
+
+.remark-container {
+  width: 10%;
+  margin-bottom: 0.5rem;
+  z-index: -1;
+  margin-top: 10px;
+  color: black;
+}
+
+.remark-container h1{
+  font-weight: bold;
+}
+
+.remark-code {
+  background-color: gray;
+}
+
+.remark-container a{
+  color :rgb(168,162,158);
+  cursor: pointer;
+  text-underline-offset: 3px;
+  text-decoration-line: underline;
+}
+
+.remark-container ul, .remark-container ol {
+  font-size: 24px;
+}
+
+.remark-container ul ul {
+  margin-left: 20px;
+}
+
+.remark-containerul ul ul {
+  margin-left: 40px;
+}
+
+.remark-container ul ul ul ul {
+  margin-left: 60px;
+}
+
+.remark-container ul li::before {
+  content: '\2022';
+  margin-right: 8px;
+}
+
+.remark-container ul li p {
+  display: inline;
+}
+
+.remark-container ol {
+  list-style: inside;
+  list-style-type: decimal;
+}
+
+.remark-container blockquote {
+  padding: 20px;
+  margin: 20px 0;
+  border-left: 5px solid #ccc;
+  background-color: #f9f9f9;
+  font-style: italic;
+}
+
+.remark-slide-content {
+  background-image: url('https://i.imgur.com/wCgFwXy.png');
+  background-position: right top;
+  background-repeat: no-repeat;
+  background-size: 60px;
+}
+
