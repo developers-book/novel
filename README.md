@@ -1,6 +1,6 @@
 Notionライクで使いやすいmarkdownエディタです。エディタに困った方は使ってみてください。
 
-live demo : https://novel.utautattaro.com
+live demo : https://tale.utautattaro.com
 
 ## expansion novel command
 clear content
